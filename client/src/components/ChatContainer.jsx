@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import assets, { messagesDummyData } from "../assets/assets";
+import { formatMessageTime } from "../lib/utils";
 
 const ChatContainer = ({ selectedUser, setSelectedUser }) => {
   const scrollEnd = useRef();
@@ -68,7 +69,9 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
                 alt=""
                 className="w-7 rounded-full"
               />
-              <p className="text-gray-500">{message.createdAt}</p>
+              <p className="text-gray-500">
+                {formatMessageTime(message.createdAt)}
+              </p>
             </div>
           </div>
         ))}
