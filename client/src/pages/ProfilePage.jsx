@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import assets from "../assets/assets";
 
 const ProfilePage = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -17,13 +18,23 @@ const ProfilePage = () => {
             className="flex items-center gap-3 cursor-pointer"
           >
             <input
+              onChange={(e) => setSelectedImage(e.target.files[0])}
               type="file"
               id="avatar"
               accept=".png,.jpg,.jpeg"
               className=""
               hidden
             />
-            <img src={""} alt="" className="" />
+            <img
+              src={
+                selectedImage
+                  ? URL.createObjectURL(selectedImage)
+                  : assets.avatar_icon
+              }
+              alt=""
+              className={`w-12 h-12 ${selectedImage && "rounded-full"}`}
+            />
+            upload profile image
           </label>
         </form>
         <img src="" alt="" className="" />
