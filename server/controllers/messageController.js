@@ -28,3 +28,26 @@ export const getUsersForSidebar = async (req, res) => {
     res.json({ success: false, messgae: error.message });
   }
 };
+
+export const getMessages = async (req, res) => {
+  try {
+    const { id: selectedUserId } = req.params;
+    const myId = req.user._id;
+
+    const messages = await Message.find({
+      $or: [
+        { senderId: myId, receiverId: selectedUserId },
+        { senderId: selectedUserId, receiverId: myId },
+      ],
+    });
+
+    await Message.updateMany(
+      { senderId: selectedUserId, receiverId: myId },
+      { seen: true }
+    );
+    res.json({ success: true, messages });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, messgae: error.message });
+  }
+};
