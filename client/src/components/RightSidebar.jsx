@@ -1,7 +1,7 @@
 import React from "react";
 import assets, { imagesDummyData } from "../assets/assets";
 
-const RightSidebar = ({ selectedUser }) => {
+const RightSidebar = ({ selectedUser, setSelctedUser }) => {
   return (
     selectedUser && (
       <div
