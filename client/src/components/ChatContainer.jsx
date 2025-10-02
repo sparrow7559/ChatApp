@@ -31,6 +31,12 @@ const ChatContainer = () => {
       return;
     }
 
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("File size too large, should be smaller than 5mb");
+      e.target.value = "";
+      return;
+    }
+
     const reader = new FileReader();
     reader.onloadend = async () => {
       await sendMessgae({ image: reader.result });
