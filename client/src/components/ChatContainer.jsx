@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
 
 const ChatContainer = () => {
-  const { messages, selectedUser, setSelectedUser, sendMessgae, getMessages } =
+  const { messages, selectedUser, setSelectedUser, sendMessage, getMessages } =
     useContext(ChatContext);
   const { authUser, onlineUsers } = useContext(AuthContext);
 
@@ -18,7 +18,7 @@ const ChatContainer = () => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (input.trim() === "") return null;
-    await sendMessgae({ text: input.trim() });
+    await sendMessage({ text: input.trim() });
     setInput("");
   };
 
@@ -39,7 +39,7 @@ const ChatContainer = () => {
 
     const reader = new FileReader();
     reader.onloadend = async () => {
-      await sendMessgae({ image: reader.result });
+      await sendMessage({ image: reader.result });
       e.target.value = "";
     };
 
