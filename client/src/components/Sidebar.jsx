@@ -75,6 +75,7 @@ const Sidebar = () => {
             key={index}
             onClick={() => {
               setSelectedUser(user);
+              setUnseenMessages((prev) => ({ ...prev, [user._id]: 0 }));
             }}
             className={`relative flex items-center gap-2 p-2 pl-4 rounded cursor-pointer max-m:text-sm ${
               selectedUser?._id === user.id && "bg-[#282142]/50"
